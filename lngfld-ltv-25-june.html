@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Trends Report — 2026-06-25</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f5f7;color:#1d1d1f;padding:28px;}
+  .report-header{background:#fff;border-radius:12px;border:1px solid #d2d2d7;padding:20px 26px;margin-bottom:20px;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .report-header h1{font-size:20px;font-weight:700;}
+  .report-meta{font-size:12px;color:#6e6e73;}
+  .summary-bar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+  .stat{background:#fff;border:1px solid #d2d2d7;border-radius:10px;padding:11px 16px;min-width:110px;}
+  .stat-val{font-size:19px;font-weight:700;}
+  .stat-label{font-size:10px;color:#6e6e73;margin-top:2px;}
+  .chart-card{background:#fff;border-radius:12px;border:1px solid #d2d2d7;padding:20px 22px;margin-bottom:20px;}
+  .chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
+  .chart-header h2{font-size:15px;font-weight:600;}
+  .chart-controls{display:flex;gap:14px;flex-wrap:wrap;}
+  .seg-group{display:flex;gap:6px;}
+  .btn-seg{padding:5px 12px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;background:#fff;border:1px solid #d2d2d7;color:#1d1d1f;}
+  .btn-seg.active{background:#0071e3;color:#fff;border-color:#0071e3;}
+  .chart-wrap{position:relative;height:300px;}
+  .sub-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+  .sub-section-header h2{font-size:15px;font-weight:600;}
+  .sub-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+  .table-section{background:#fff;border-radius:12px;border:1px solid #d2d2d7;}
+  .table-title{font-size:15px;font-weight:600;padding:14px 18px 10px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:8px;}
+  .table-title span{font-size:12px;font-weight:400;color:#6e6e73;}
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  thead{display:table-header-group;}
+  th{padding:8px 12px;text-align:left;font-weight:600;background:#f5f5f7;border-bottom:1px solid #d2d2d7;white-space:nowrap;}
+  td{padding:7px 12px;border-bottom:1px solid #f0f0f0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:#fafafa;}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+    @page{margin:12mm 14mm;}
+    body{background:#fff!important;padding:0;}
+    .report-header{border:1px solid #d2d2d7;box-shadow:none;margin-bottom:12px;padding:12px 16px;}
+    .report-header h1{font-size:16px;}
+    .summary-bar{gap:6px;margin-bottom:12px;flex-wrap:nowrap;}
+    .stat{padding:7px 9px;min-width:0;flex:1;border-radius:7px;}
+    .stat-val{font-size:13px;}
+    .stat-label{font-size:8.5px;}
+    .stat > div[style]{font-size:9px!important;}
+    .chart-controls{display:none!important;}
+    .sub-section-header .seg-group{display:none!important;}
+    .sub-charts-grid{grid-template-columns:1fr 1fr;}
+    .chart-card{padding:12px 14px;margin-bottom:12px;page-break-inside:avoid;}
+    .chart-wrap{height:200px;}
+    .table-section{border:1px solid #d2d2d7;}
+    .table-title{padding:10px 12px 8px;font-size:13px;}
+    th{padding:6px 9px;font-size:10.5px;background:#f5f5f7!important;}
+    td{padding:5px 9px;font-size:10.5px;}
+    tr{page-break-inside:avoid;}
+    tr:nth-child(even) td{background:#fafafa!important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <h1>Order Trends Report</h1>
+  <div class="report-meta">Generated 6/25/2026, 10:52:28 AM</div>
+</div>
+
+<div class="summary-bar">
+    <div class="stat"><div class="stat-val">195</div><div class="stat-label">Matched orders</div></div>
+    <div class="stat"><div class="stat-val">175</div><div class="stat-label">Unique customers</div></div>
+    <div class="stat"><div class="stat-val">$15,531.48</div><div class="stat-label">Total revenue</div></div>
+    <div class="stat"><div class="stat-val">$88.75</div><div class="stat-label">Avg revenue / customer</div></div>
+    <div class="stat"><div class="stat-val">$79.65</div><div class="stat-label">Our AOV</div></div>
+    <div class="stat">
+      <div class="stat-val">$73.00</div>
+      <div class="stat-label">Client sitewide AOV</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" style="color:#34c759">+9.1%</div>
+      <div class="stat-label">AOV lift over sitewide</div>
+      <div style="font-size:11px;color:#6e6e73;margin-top:3px">$79.65 vs $73.00</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$10,000.00</div>
+      <div class="stat-label">Client spend</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" style="color:#34c759">1.55x</div>
+      <div class="stat-label">ROI</div>
+      <div style="font-size:11px;color:#6e6e73;margin-top:3px">per $1 spent</div>
+    </div></div>
+
+<div class="chart-card">
+  <div class="chart-header">
+    <h2 id="r-chart-title">Revenue Trend</h2>
+    <div class="chart-controls">
+      <div class="seg-group">
+        <button class="btn-seg active" onclick="setMetric('revenue',this)">Revenue</button>
+        <button class="btn-seg"        onclick="setMetric('orders',this)">Order Count</button>
+      </div>
+      <div class="seg-group">
+        <button class="btn-seg"        onclick="setGran('day',this)">Day</button>
+        <button class="btn-seg"        onclick="setGran('week',this)">Week</button>
+        <button class="btn-seg active" onclick="setGran('month',this)">Month</button>
+      </div>
+    </div>
+  </div>
+  <div class="chart-wrap"><canvas id="r-chart"></canvas></div>
+</div>
+
+
+
+<div class="table-section">
+  <div class="table-title">Orders <span>195 total</span></div>
+  <table>
+    <thead><tr><th>Order #</th><th>Created At</th><th>Total</th><th>Payment</th><th>Fulfillment</th></tr></thead>
+    <tbody><tr><td>9348930</td><td>2026-04-10 00:09:49 -0400</td><td>$57.50</td><td>paid</td><td>fulfilled</td></tr><tr><td>9348997</td><td>2026-04-10 13:41:30 -0400</td><td>$183.40</td><td>paid</td><td>fulfilled</td></tr><tr><td>9349841</td><td>2026-04-14 13:13:34 -0400</td><td>$69.00</td><td>paid</td><td>fulfilled</td></tr><tr><td>9350463</td><td>2026-04-17 10:20:40 -0400</td><td>$156.78</td><td>paid</td><td>fulfilled</td></tr><tr><td>9360074</td><td>2026-04-22 10:13:48 -0400</td><td>$258.50</td><td>paid</td><td>fulfilled</td></tr><tr><td>9360079</td><td>2026-04-22 10:53:45 -0400</td><td>$105.25</td><td>paid</td><td>fulfilled</td></tr><tr><td>9360772</td><td>2026-04-26 12:22:27 -0400</td><td>$105.80</td><td>paid</td><td>fulfilled</td></tr><tr><td>9360887</td><td>2026-04-26 21:22:54 -0400</td><td>$64.25</td><td>paid</td><td>fulfilled</td></tr><tr><td>9360942</td><td>2026-04-27 10:37:19 -0400</td><td>$86.94</td><td>paid</td><td>fulfilled</td></tr><tr><td>9360948</td><td>2026-04-27 11:36:41 -0400</td><td>$40.83</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361000</td><td>2026-04-27 16:32:11 -0400</td><td>$86.00</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361115</td><td>2026-04-28 15:00:51 -0400</td><td>$84.33</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361146</td><td>2026-04-28 18:28:31 -0400</td><td>$44.10</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361183</td><td>2026-04-28 22:36:50 -0400</td><td>$93.11</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361369</td><td>2026-04-30 04:50:28 -0400</td><td>$55.49</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361418</td><td>2026-04-30 11:07:08 -0400</td><td>$111.85</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361504</td><td>2026-04-30 22:23:11 -0400</td><td>$124.31</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361534</td><td>2026-05-01 04:47:21 -0400</td><td>$121.59</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361672</td><td>2026-05-02 07:41:26 -0400</td><td>$84.00</td><td>paid</td><td>unfulfilled</td></tr><tr><td>9361779</td><td>2026-05-02 17:23:23 -0400</td><td>$130.18</td><td>paid</td><td>fulfilled</td></tr><tr><td>9361891</td><td>2026-05-03 13:07:25 -0400</td><td>$71.70</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362039</td><td>2026-05-04 11:28:48 -0400</td><td>$42.55</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362197</td><td>2026-05-05 09:38:03 -0400</td><td>$40.57</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362204</td><td>2026-05-05 10:23:07 -0400</td><td>$28.62</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362483</td><td>2026-05-06 21:29:29 -0400</td><td>$49.32</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362506</td><td>2026-05-07 02:57:27 -0400</td><td>$50.17</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362576</td><td>2026-05-07 14:44:22 -0400</td><td>$113.16</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362579</td><td>2026-05-07 14:59:28 -0400</td><td>$105.41</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362585</td><td>2026-05-07 15:27:55 -0400</td><td>$110.45</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362656</td><td>2026-05-07 23:08:43 -0400</td><td>$30.73</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362782</td><td>2026-05-08 13:51:30 -0400</td><td>$28.12</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362868</td><td>2026-05-08 22:27:16 -0400</td><td>$53.47</td><td>paid</td><td>fulfilled</td></tr><tr><td>9362964</td><td>2026-05-09 14:29:02 -0400</td><td>$29.10</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363148</td><td>2026-05-10 12:51:09 -0400</td><td>$39.34</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363182</td><td>2026-05-10 15:18:52 -0400</td><td>$191.11</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363218</td><td>2026-05-10 17:30:16 -0400</td><td>$28.25</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363409</td><td>2026-05-11 19:00:17 -0400</td><td>$82.87</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363429</td><td>2026-05-11 21:06:04 -0400</td><td>$117.74</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363456</td><td>2026-05-11 23:37:29 -0400</td><td>$84.08</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363471</td><td>2026-05-12 04:27:34 -0400</td><td>$110.76</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363482</td><td>2026-05-12 08:35:01 -0400</td><td>$91.57</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363497</td><td>2026-05-12 10:12:33 -0400</td><td>$111.39</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363661</td><td>2026-05-13 09:55:34 -0400</td><td>$41.00</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363679</td><td>2026-05-13 11:45:35 -0400</td><td>$141.98</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363704</td><td>2026-05-13 14:08:38 -0400</td><td>$60.05</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363782</td><td>2026-05-13 22:26:58 -0400</td><td>$84.27</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363805</td><td>2026-05-14 06:15:39 -0400</td><td>$83.30</td><td>paid</td><td>fulfilled</td></tr><tr><td>9363892</td><td>2026-05-14 17:10:52 -0400</td><td>$26.65</td><td>paid</td><td>unfulfilled</td></tr><tr><td>9363968</td><td>2026-05-14 22:22:29 -0400</td><td>$82.67</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364034</td><td>2026-05-15 10:42:11 -0400</td><td>$121.81</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364045</td><td>2026-05-15 11:19:53 -0400</td><td>$86.35</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364186</td><td>2026-05-16 07:39:14 -0400</td><td>$105.66</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>9364291</td><td>2026-05-16 14:22:49 -0400</td><td>$258.22</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364332</td><td>2026-05-16 16:41:40 -0400</td><td>$19.13</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364400</td><td>2026-05-16 21:53:19 -0400</td><td>$113.52</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364421</td><td>2026-05-17 00:13:08 -0400</td><td>$51.97</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364612</td><td>2026-05-17 18:50:55 -0400</td><td>$40.56</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364655</td><td>2026-05-17 21:16:12 -0400</td><td>$83.40</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364684</td><td>2026-05-18 02:43:53 -0400</td><td>$36.19</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364723</td><td>2026-05-18 10:10:10 -0400</td><td>$51.21</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364730</td><td>2026-05-18 10:26:17 -0400</td><td>$81.36</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>9364817</td><td>2026-05-18 17:28:07 -0400</td><td>$59.58</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364860</td><td>2026-05-18 20:19:38 -0400</td><td>$123.37</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364869</td><td>2026-05-18 20:50:53 -0400</td><td>$30.05</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>9364878</td><td>2026-05-18 21:28:50 -0400</td><td>$85.79</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364889</td><td>2026-05-18 22:01:51 -0400</td><td>$37.73</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364899</td><td>2026-05-18 22:23:24 -0400</td><td>$63.31</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364950</td><td>2026-05-19 09:24:42 -0400</td><td>$79.01</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364985</td><td>2026-05-19 12:17:13 -0400</td><td>$34.42</td><td>paid</td><td>fulfilled</td></tr><tr><td>9364996</td><td>2026-05-19 12:48:46 -0400</td><td>$37.26</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365013</td><td>2026-05-19 14:45:40 -0400</td><td>$49.80</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365100</td><td>2026-05-19 22:19:49 -0400</td><td>$84.74</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365161</td><td>2026-05-20 10:46:38 -0400</td><td>$88.58</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365297</td><td>2026-05-20 19:59:30 -0400</td><td>$77.96</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>9365318</td><td>2026-05-20 21:55:25 -0400</td><td>$31.80</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365325</td><td>2026-05-20 22:50:06 -0400</td><td>$74.86</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365382</td><td>2026-05-21 10:01:03 -0400</td><td>$44.89</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365546</td><td>2026-05-22 00:07:45 -0400</td><td>$37.05</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365548</td><td>2026-05-22 01:47:31 -0400</td><td>$111.32</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365685</td><td>2026-05-22 20:25:30 -0400</td><td>$51.06</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365704</td><td>2026-05-22 23:04:42 -0400</td><td>$29.85</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365763</td><td>2026-05-23 09:58:24 -0400</td><td>$111.59</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365775</td><td>2026-05-23 10:41:24 -0400</td><td>$21.88</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365820</td><td>2026-05-23 14:19:40 -0400</td><td>$44.51</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365825</td><td>2026-05-23 14:45:36 -0400</td><td>$448.37</td><td>paid</td><td>partial</td></tr><tr><td>9365841</td><td>2026-05-23 16:03:48 -0400</td><td>$121.75</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365880</td><td>2026-05-23 19:37:25 -0400</td><td>$20.86</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365886</td><td>2026-05-23 20:14:30 -0400</td><td>$49.30</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365947</td><td>2026-05-24 10:04:13 -0400</td><td>$37.54</td><td>paid</td><td>fulfilled</td></tr><tr><td>9365948</td><td>2026-05-24 10:08:34 -0400</td><td>$143.57</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366003</td><td>2026-05-24 14:13:18 -0400</td><td>$90.81</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>9366030</td><td>2026-05-24 16:46:29 -0400</td><td>$136.11</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366075</td><td>2026-05-24 19:45:21 -0400</td><td>$119.03</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366130</td><td>2026-05-25 01:33:59 -0400</td><td>$161.20</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366157</td><td>2026-05-25 08:46:33 -0400</td><td>$42.83</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366165</td><td>2026-05-25 09:59:23 -0400</td><td>$203.25</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>9366176</td><td>2026-05-25 10:39:37 -0400</td><td>$72.25</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366177</td><td>2026-05-25 10:42:56 -0400</td><td>$33.66</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366183</td><td>2026-05-25 11:12:19 -0400</td><td>$77.92</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366189</td><td>2026-05-25 11:49:35 -0400</td><td>$90.12</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366231</td><td>2026-05-25 15:52:47 -0400</td><td>$392.82</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366294</td><td>2026-05-25 20:20:57 -0400</td><td>$48.43</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366316</td><td>2026-05-25 22:21:14 -0400</td><td>$22.75</td><td>paid</td><td>fulfilled</td></tr><tr><td>9366341</td><td>2026-05-26 00:28:44 -0400</td><td>$54.49</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>9377656</td><td>2026-05-26 10:54:11 -0400</td><td>$101.07</td><td>paid</td><td>fulfilled</td></tr><tr><td>9377735</td><td>2026-05-26 19:11:55 -0400</td><td>$84.48</td><td>paid</td><td>fulfilled</td></tr><tr><td>9377761</td><td>2026-05-26 21:42:40 -0400</td><td>$21.52</td><td>paid</td><td>fulfilled</td></tr><tr><td>9377777</td><td>2026-05-26 23:23:51 -0400</td><td>$108.91</td><td>paid</td><td>fulfilled</td></tr><tr><td>9377785</td><td>2026-05-27 01:11:35 -0400</td><td>$87.73</td><td>paid</td><td>fulfilled</td></tr><tr><td>9377898</td><td>2026-05-27 17:11:17 -0400</td><td>$40.03</td><td>paid</td><td>fulfilled</td></tr><tr><td>9377919</td><td>2026-05-27 19:38:04 -0400</td><td>$27.76</td><td>paid</td><td>fulfilled</td></tr><tr><td>9377986</td><td>2026-05-28 10:06:24 -0400</td><td>$87.54</td><td>paid</td><td>fulfilled</td></tr><tr><td>9377987</td><td>2026-05-28 10:17:50 -0400</td><td>$28.52</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378023</td><td>2026-05-28 15:00:17 -0400</td><td>$214.77</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378033</td><td>2026-05-28 16:09:55 -0400</td><td>$33.12</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378109</td><td>2026-05-28 23:59:31 -0400</td><td>$78.28</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378163</td><td>2026-05-29 11:47:03 -0400</td><td>$23.28</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378338</td><td>2026-05-30 12:04:18 -0400</td><td>$90.99</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378369</td><td>2026-05-30 15:15:20 -0400</td><td>$69.85</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378380</td><td>2026-05-30 16:11:42 -0400</td><td>$79.99</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378383</td><td>2026-05-30 16:24:11 -0400</td><td>$86.46</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378399</td><td>2026-05-30 17:54:24 -0400</td><td>$80.02</td><td>paid</td><td>unfulfilled</td></tr><tr><td>9378461</td><td>2026-05-31 08:03:52 -0400</td><td>$87.67</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378469</td><td>2026-05-31 08:59:05 -0400</td><td>$77.08</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378491</td><td>2026-05-31 12:09:22 -0400</td><td>$83.02</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378518</td><td>2026-05-31 14:30:15 -0400</td><td>$20.67</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378606</td><td>2026-05-31 21:31:23 -0400</td><td>$89.94</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378641</td><td>2026-06-01 07:03:48 -0400</td><td>$193.82</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378707</td><td>2026-06-01 14:16:49 -0400</td><td>$58.66</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378710</td><td>2026-06-01 14:20:23 -0400</td><td>$33.48</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378713</td><td>2026-06-01 14:32:31 -0400</td><td>$97.50</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378734</td><td>2026-06-01 16:32:24 -0400</td><td>$151.26</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378745</td><td>2026-06-01 17:18:07 -0400</td><td>$55.18</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378760</td><td>2026-06-01 19:24:23 -0400</td><td>$71.58</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378769</td><td>2026-06-01 20:25:48 -0400</td><td>$29.40</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378808</td><td>2026-06-02 02:44:30 -0400</td><td>$23.76</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378843</td><td>2026-06-02 10:29:25 -0400</td><td>$53.80</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378895</td><td>2026-06-02 16:10:22 -0400</td><td>$52.19</td><td>paid</td><td>fulfilled</td></tr><tr><td>9378899</td><td>2026-06-02 16:39:29 -0400</td><td>$24.85</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379011</td><td>2026-06-03 11:36:13 -0400</td><td>$118.77</td><td>paid</td><td>partial</td></tr><tr><td>9379018</td><td>2026-06-03 12:04:20 -0400</td><td>$60.64</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379139</td><td>2026-06-03 23:19:05 -0400</td><td>$157.33</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>9379193</td><td>2026-06-04 11:34:13 -0400</td><td>$34.78</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379245</td><td>2026-06-04 16:43:22 -0400</td><td>$49.68</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379300</td><td>2026-06-04 23:18:50 -0400</td><td>$48.28</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379395</td><td>2026-06-05 18:39:36 -0400</td><td>$64.43</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379420</td><td>2026-06-05 22:37:34 -0400</td><td>$31.36</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379444</td><td>2026-06-06 08:34:11 -0400</td><td>$83.59</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379467</td><td>2026-06-06 10:40:01 -0400</td><td>$28.33</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379568</td><td>2026-06-06 21:16:43 -0400</td><td>$36.36</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379582</td><td>2026-06-07 00:04:01 -0400</td><td>$39.45</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379714</td><td>2026-06-07 21:36:04 -0400</td><td>$46.08</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379715</td><td>2026-06-07 21:40:59 -0400</td><td>$84.55</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379877</td><td>2026-06-09 10:44:47 -0400</td><td>$65.43</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379890</td><td>2026-06-09 12:44:21 -0400</td><td>$89.82</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379894</td><td>2026-06-09 13:07:09 -0400</td><td>$38.48</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379903</td><td>2026-06-09 13:53:06 -0400</td><td>$20.10</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379909</td><td>2026-06-09 14:34:56 -0400</td><td>$38.46</td><td>paid</td><td>fulfilled</td></tr><tr><td>9379946</td><td>2026-06-09 17:10:01 -0400</td><td>$23.98</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380014</td><td>2026-06-10 07:02:27 -0400</td><td>$187.67</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380066</td><td>2026-06-10 15:46:48 -0400</td><td>$19.35</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380077</td><td>2026-06-10 17:00:43 -0400</td><td>$53.05</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380106</td><td>2026-06-10 19:50:37 -0400</td><td>$75.64</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380109</td><td>2026-06-10 19:59:14 -0400</td><td>$85.52</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380123</td><td>2026-06-10 22:14:40 -0400</td><td>$114.39</td><td>paid</td><td>partial</td></tr><tr><td>9380274</td><td>2026-06-12 11:02:46 -0400</td><td>$33.65</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380371</td><td>2026-06-13 11:50:57 -0400</td><td>$71.16</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380462</td><td>2026-06-14 02:23:06 -0400</td><td>$167.88</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380489</td><td>2026-06-14 12:09:56 -0400</td><td>$34.65</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380552</td><td>2026-06-15 07:23:56 -0400</td><td>$39.60</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380566</td><td>2026-06-15 10:29:37 -0400</td><td>$138.59</td><td>paid</td><td>partial</td></tr><tr><td>9380572</td><td>2026-06-15 11:43:35 -0400</td><td>$84.78</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380625</td><td>2026-06-15 21:41:28 -0400</td><td>$81.00</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380631</td><td>2026-06-16 02:50:31 -0400</td><td>$58.46</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380656</td><td>2026-06-16 11:51:36 -0400</td><td>$253.91</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380667</td><td>2026-06-16 12:47:26 -0400</td><td>$56.79</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380704</td><td>2026-06-16 17:54:32 -0400</td><td>$42.14</td><td>paid</td><td>partial</td></tr><tr><td>9380722</td><td>2026-06-16 21:26:04 -0400</td><td>$31.60</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380725</td><td>2026-06-16 21:49:07 -0400</td><td>$89.46</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380739</td><td>2026-06-17 00:07:30 -0400</td><td>$102.47</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380798</td><td>2026-06-17 18:55:47 -0400</td><td>$81.97</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380803</td><td>2026-06-17 20:36:03 -0400</td><td>$105.46</td><td>paid</td><td>partial</td></tr><tr><td>9380827</td><td>2026-06-18 08:40:46 -0400</td><td>$48.81</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380868</td><td>2026-06-18 16:07:45 -0400</td><td>$40.21</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380900</td><td>2026-06-19 07:47:34 -0400</td><td>$33.25</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380908</td><td>2026-06-19 09:26:49 -0400</td><td>$91.30</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380920</td><td>2026-06-19 11:07:05 -0400</td><td>$92.69</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380925</td><td>2026-06-19 11:33:11 -0400</td><td>$23.45</td><td>paid</td><td>fulfilled</td></tr><tr><td>9380968</td><td>2026-06-19 18:13:05 -0400</td><td>$78.55</td><td>paid</td><td>unfulfilled</td></tr><tr><td>9380974</td><td>2026-06-19 19:26:23 -0400</td><td>$33.18</td><td>paid</td><td>fulfilled</td></tr><tr><td>9381010</td><td>2026-06-20 11:10:31 -0400</td><td>$40.88</td><td>paid</td><td>fulfilled</td></tr><tr><td>9381047</td><td>2026-06-21 08:31:25 -0400</td><td>$59.57</td><td>paid</td><td>fulfilled</td></tr><tr><td>9381086</td><td>2026-06-21 22:32:06 -0400</td><td>$88.50</td><td>paid</td><td>fulfilled</td></tr><tr><td>9381093</td><td>2026-06-22 07:23:43 -0400</td><td>$23.54</td><td>paid</td><td>fulfilled</td></tr><tr><td>9381121</td><td>2026-06-23 22:50:03 -0400</td><td>$139.82</td><td>paid</td><td>unfulfilled</td></tr></tbody>
+  </table>
+</div>
+
+
+
+<script>
+const _data = {"byDay":[{"date":"2026-04-10","total":240.9,"count":2},{"date":"2026-04-14","total":69,"count":1},{"date":"2026-04-17","total":156.78,"count":1},{"date":"2026-04-22","total":363.75,"count":2},{"date":"2026-04-26","total":170.05,"count":2},{"date":"2026-04-27","total":213.77,"count":3},{"date":"2026-04-28","total":221.54,"count":3},{"date":"2026-04-30","total":291.65,"count":3},{"date":"2026-05-01","total":121.59,"count":1},{"date":"2026-05-02","total":214.18,"count":2},{"date":"2026-05-03","total":71.7,"count":1},{"date":"2026-05-04","total":42.55,"count":1},{"date":"2026-05-05","total":69.19,"count":2},{"date":"2026-05-06","total":49.32,"count":1},{"date":"2026-05-07","total":409.92,"count":5},{"date":"2026-05-08","total":81.59,"count":2},{"date":"2026-05-09","total":29.1,"count":1},{"date":"2026-05-10","total":258.7,"count":3},{"date":"2026-05-11","total":284.69,"count":3},{"date":"2026-05-12","total":313.72,"count":3},{"date":"2026-05-13","total":327.3,"count":4},{"date":"2026-05-14","total":192.62,"count":3},{"date":"2026-05-15","total":208.16,"count":2},{"date":"2026-05-16","total":496.53,"count":4},{"date":"2026-05-17","total":175.93,"count":3},{"date":"2026-05-18","total":568.59,"count":9},{"date":"2026-05-19","total":285.23,"count":5},{"date":"2026-05-20","total":273.2,"count":4},{"date":"2026-05-21","total":44.89,"count":1},{"date":"2026-05-22","total":229.28,"count":4},{"date":"2026-05-23","total":818.26,"count":7},{"date":"2026-05-24","total":527.06,"count":5},{"date":"2026-05-25","total":1145.23,"count":10},{"date":"2026-05-26","total":370.47,"count":5},{"date":"2026-05-27","total":155.52,"count":3},{"date":"2026-05-28","total":442.23,"count":5},{"date":"2026-05-29","total":23.28,"count":1},{"date":"2026-05-30","total":407.31,"count":5},{"date":"2026-05-31","total":358.38,"count":5},{"date":"2026-06-01","total":690.88,"count":8},{"date":"2026-06-02","total":154.6,"count":4},{"date":"2026-06-03","total":336.74,"count":3},{"date":"2026-06-04","total":132.74,"count":3},{"date":"2026-06-05","total":95.79,"count":2},{"date":"2026-06-06","total":148.28,"count":3},{"date":"2026-06-07","total":170.08,"count":3},{"date":"2026-06-09","total":276.27,"count":6},{"date":"2026-06-10","total":535.62,"count":6},{"date":"2026-06-12","total":33.65,"count":1},{"date":"2026-06-13","total":71.16,"count":1},{"date":"2026-06-14","total":202.53,"count":2},{"date":"2026-06-15","total":343.97,"count":4},{"date":"2026-06-16","total":532.36,"count":6},{"date":"2026-06-17","total":289.9,"count":3},{"date":"2026-06-18","total":89.02,"count":2},{"date":"2026-06-19","total":352.42,"count":6},{"date":"2026-06-20","total":40.88,"count":1},{"date":"2026-06-21","total":148.07,"count":2},{"date":"2026-06-22","total":23.54,"count":1},{"date":"2026-06-23","total":139.82,"count":1}],"byWeek":[{"date":"2026-04-06","total":240.9,"count":2},{"date":"2026-04-13","total":225.78,"count":2},{"date":"2026-04-20","total":533.8,"count":4},{"date":"2026-04-27","total":1134.43,"count":13},{"date":"2026-05-04","total":940.37,"count":15},{"date":"2026-05-11","total":1998.95,"count":22},{"date":"2026-05-18","total":2746.51,"count":35},{"date":"2026-05-25","total":2902.42,"count":34},{"date":"2026-06-01","total":1729.11,"count":26},{"date":"2026-06-08","total":1119.23,"count":16},{"date":"2026-06-15","total":1796.62,"count":24},{"date":"2026-06-22","total":163.36,"count":2}],"byMonth":[{"date":"2026-04","total":1727.44,"count":17},{"date":"2026-05","total":8995.72,"count":110},{"date":"2026-06","total":4808.32,"count":68}],"subStats":{"totalSubOrders":0,"newSubscribers":0,"recurringOrders":0,"nonSubOrders":195,"subRevenue":0,"nonSubRevenue":15531.48,"subRevenuePercent":0,"uniqueSubscribers":0,"avgRecurPerSub":0,"firstAOV":0,"recurAOV":0,"nonSubAOV":79.65,"subByDay":[{"date":"2026-04-10","subRevenue":0,"recurRevenue":0,"nonSubRevenue":240.9,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-04-14","subRevenue":0,"recurRevenue":0,"nonSubRevenue":69,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-04-17","subRevenue":0,"recurRevenue":0,"nonSubRevenue":156.78,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-04-22","subRevenue":0,"recurRevenue":0,"nonSubRevenue":363.75,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-04-26","subRevenue":0,"recurRevenue":0,"nonSubRevenue":170.05,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-04-27","subRevenue":0,"recurRevenue":0,"nonSubRevenue":213.77,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-04-28","subRevenue":0,"recurRevenue":0,"nonSubRevenue":221.54,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-04-30","subRevenue":0,"recurRevenue":0,"nonSubRevenue":291.65,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-05-01","subRevenue":0,"recurRevenue":0,"nonSubRevenue":121.59,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-05-02","subRevenue":0,"recurRevenue":0,"nonSubRevenue":214.18,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-05-03","subRevenue":0,"recurRevenue":0,"nonSubRevenue":71.7,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-05-04","subRevenue":0,"recurRevenue":0,"nonSubRevenue":42.55,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-05-05","subRevenue":0,"recurRevenue":0,"nonSubRevenue":69.19,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-05-06","subRevenue":0,"recurRevenue":0,"nonSubRevenue":49.32,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-05-07","subRevenue":0,"recurRevenue":0,"nonSubRevenue":409.92,"firstCount":0,"recurCount":0,"nonSubCount":5},{"date":"2026-05-08","subRevenue":0,"recurRevenue":0,"nonSubRevenue":81.59,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-05-09","subRevenue":0,"recurRevenue":0,"nonSubRevenue":29.1,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-05-10","subRevenue":0,"recurRevenue":0,"nonSubRevenue":258.7,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-05-11","subRevenue":0,"recurRevenue":0,"nonSubRevenue":284.69,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-05-12","subRevenue":0,"recurRevenue":0,"nonSubRevenue":313.72,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-05-13","subRevenue":0,"recurRevenue":0,"nonSubRevenue":327.3,"firstCount":0,"recurCount":0,"nonSubCount":4},{"date":"2026-05-14","subRevenue":0,"recurRevenue":0,"nonSubRevenue":192.62,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-05-15","subRevenue":0,"recurRevenue":0,"nonSubRevenue":208.16,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-05-16","subRevenue":0,"recurRevenue":0,"nonSubRevenue":496.53,"firstCount":0,"recurCount":0,"nonSubCount":4},{"date":"2026-05-17","subRevenue":0,"recurRevenue":0,"nonSubRevenue":175.93,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-05-18","subRevenue":0,"recurRevenue":0,"nonSubRevenue":568.59,"firstCount":0,"recurCount":0,"nonSubCount":9},{"date":"2026-05-19","subRevenue":0,"recurRevenue":0,"nonSubRevenue":285.23,"firstCount":0,"recurCount":0,"nonSubCount":5},{"date":"2026-05-20","subRevenue":0,"recurRevenue":0,"nonSubRevenue":273.2,"firstCount":0,"recurCount":0,"nonSubCount":4},{"date":"2026-05-21","subRevenue":0,"recurRevenue":0,"nonSubRevenue":44.89,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-05-22","subRevenue":0,"recurRevenue":0,"nonSubRevenue":229.28,"firstCount":0,"recurCount":0,"nonSubCount":4},{"date":"2026-05-23","subRevenue":0,"recurRevenue":0,"nonSubRevenue":818.26,"firstCount":0,"recurCount":0,"nonSubCount":7},{"date":"2026-05-24","subRevenue":0,"recurRevenue":0,"nonSubRevenue":527.06,"firstCount":0,"recurCount":0,"nonSubCount":5},{"date":"2026-05-25","subRevenue":0,"recurRevenue":0,"nonSubRevenue":1145.23,"firstCount":0,"recurCount":0,"nonSubCount":10},{"date":"2026-05-26","subRevenue":0,"recurRevenue":0,"nonSubRevenue":370.47,"firstCount":0,"recurCount":0,"nonSubCount":5},{"date":"2026-05-27","subRevenue":0,"recurRevenue":0,"nonSubRevenue":155.52,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-05-28","subRevenue":0,"recurRevenue":0,"nonSubRevenue":442.23,"firstCount":0,"recurCount":0,"nonSubCount":5},{"date":"2026-05-29","subRevenue":0,"recurRevenue":0,"nonSubRevenue":23.28,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-05-30","subRevenue":0,"recurRevenue":0,"nonSubRevenue":407.31,"firstCount":0,"recurCount":0,"nonSubCount":5},{"date":"2026-05-31","subRevenue":0,"recurRevenue":0,"nonSubRevenue":358.38,"firstCount":0,"recurCount":0,"nonSubCount":5},{"date":"2026-06-01","subRevenue":0,"recurRevenue":0,"nonSubRevenue":690.88,"firstCount":0,"recurCount":0,"nonSubCount":8},{"date":"2026-06-02","subRevenue":0,"recurRevenue":0,"nonSubRevenue":154.6,"firstCount":0,"recurCount":0,"nonSubCount":4},{"date":"2026-06-03","subRevenue":0,"recurRevenue":0,"nonSubRevenue":336.74,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-06-04","subRevenue":0,"recurRevenue":0,"nonSubRevenue":132.74,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-06-05","subRevenue":0,"recurRevenue":0,"nonSubRevenue":95.79,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-06-06","subRevenue":0,"recurRevenue":0,"nonSubRevenue":148.28,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-06-07","subRevenue":0,"recurRevenue":0,"nonSubRevenue":170.08,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-06-09","subRevenue":0,"recurRevenue":0,"nonSubRevenue":276.27,"firstCount":0,"recurCount":0,"nonSubCount":6},{"date":"2026-06-10","subRevenue":0,"recurRevenue":0,"nonSubRevenue":535.62,"firstCount":0,"recurCount":0,"nonSubCount":6},{"date":"2026-06-12","subRevenue":0,"recurRevenue":0,"nonSubRevenue":33.65,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-06-13","subRevenue":0,"recurRevenue":0,"nonSubRevenue":71.16,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-06-14","subRevenue":0,"recurRevenue":0,"nonSubRevenue":202.53,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-06-15","subRevenue":0,"recurRevenue":0,"nonSubRevenue":343.97,"firstCount":0,"recurCount":0,"nonSubCount":4},{"date":"2026-06-16","subRevenue":0,"recurRevenue":0,"nonSubRevenue":532.36,"firstCount":0,"recurCount":0,"nonSubCount":6},{"date":"2026-06-17","subRevenue":0,"recurRevenue":0,"nonSubRevenue":289.9,"firstCount":0,"recurCount":0,"nonSubCount":3},{"date":"2026-06-18","subRevenue":0,"recurRevenue":0,"nonSubRevenue":89.02,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-06-19","subRevenue":0,"recurRevenue":0,"nonSubRevenue":352.42,"firstCount":0,"recurCount":0,"nonSubCount":6},{"date":"2026-06-20","subRevenue":0,"recurRevenue":0,"nonSubRevenue":40.88,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-06-21","subRevenue":0,"recurRevenue":0,"nonSubRevenue":148.07,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-06-22","subRevenue":0,"recurRevenue":0,"nonSubRevenue":23.54,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-06-23","subRevenue":0,"recurRevenue":0,"nonSubRevenue":139.82,"firstCount":0,"recurCount":0,"nonSubCount":1}],"subByWeek":[{"date":"2026-04-06","subRevenue":0,"recurRevenue":0,"nonSubRevenue":240.9,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-04-13","subRevenue":0,"recurRevenue":0,"nonSubRevenue":225.78,"firstCount":0,"recurCount":0,"nonSubCount":2},{"date":"2026-04-20","subRevenue":0,"recurRevenue":0,"nonSubRevenue":533.8,"firstCount":0,"recurCount":0,"nonSubCount":4},{"date":"2026-04-27","subRevenue":0,"recurRevenue":0,"nonSubRevenue":1134.43,"firstCount":0,"recurCount":0,"nonSubCount":13},{"date":"2026-05-04","subRevenue":0,"recurRevenue":0,"nonSubRevenue":940.37,"firstCount":0,"recurCount":0,"nonSubCount":15},{"date":"2026-05-11","subRevenue":0,"recurRevenue":0,"nonSubRevenue":1998.95,"firstCount":0,"recurCount":0,"nonSubCount":22},{"date":"2026-05-18","subRevenue":0,"recurRevenue":0,"nonSubRevenue":2746.51,"firstCount":0,"recurCount":0,"nonSubCount":35},{"date":"2026-05-25","subRevenue":0,"recurRevenue":0,"nonSubRevenue":2902.42,"firstCount":0,"recurCount":0,"nonSubCount":34},{"date":"2026-06-01","subRevenue":0,"recurRevenue":0,"nonSubRevenue":1729.11,"firstCount":0,"recurCount":0,"nonSubCount":26},{"date":"2026-06-08","subRevenue":0,"recurRevenue":0,"nonSubRevenue":1119.23,"firstCount":0,"recurCount":0,"nonSubCount":16},{"date":"2026-06-15","subRevenue":0,"recurRevenue":0,"nonSubRevenue":1796.62,"firstCount":0,"recurCount":0,"nonSubCount":24},{"date":"2026-06-22","subRevenue":0,"recurRevenue":0,"nonSubRevenue":163.36,"firstCount":0,"recurCount":0,"nonSubCount":2}],"subByMonth":[{"date":"2026-04","subRevenue":0,"recurRevenue":0,"nonSubRevenue":1727.44,"firstCount":0,"recurCount":0,"nonSubCount":17},{"date":"2026-05","subRevenue":0,"recurRevenue":0,"nonSubRevenue":8995.72,"firstCount":0,"recurCount":0,"nonSubCount":110},{"date":"2026-06","subRevenue":0,"recurRevenue":0,"nonSubRevenue":4808.32,"firstCount":0,"recurCount":0,"nonSubCount":68}]},"hasSubscriptions":false};
+const _currency = "$";
+const _monthlySpend = 5000;
+let _metric = 'revenue', _gran = 'month', _chart = null;
+
+function getBuckets() {
+  return _gran==='day'?_data.byDay:_gran==='week'?_data.byWeek:_data.byMonth;
+}
+
+function renderChart() {
+  const buckets = getBuckets();
+  const labels  = buckets.map(b=>b.date);
+  const values  = buckets.map(b=>_metric==='revenue'?b.total:b.count);
+  document.getElementById('r-chart-title').textContent = _metric==='revenue'?'Revenue Trend':'Order Count Trend';
+  if (_chart) _chart.destroy();
+
+  const datasets = [{
+    type:'bar', label:_metric==='revenue'?'Revenue':'Order Count',
+    data:values, backgroundColor:'rgba(0,113,227,0.75)',
+    borderColor:'#0071e3', borderWidth:1, borderRadius:4, order:2,
+  }];
+  if (_monthlySpend > 0 && _metric==='revenue') {
+    datasets.push({
+      type:'line', label:'Monthly spend',
+      data:labels.map(()=>_monthlySpend),
+      borderColor:'#FFD60A', borderWidth:2.5, borderDash:[6,4],
+      pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#FFD60A',
+      fill:false, tension:0, order:1,
+    });
+  }
+
+  _chart = new Chart(document.getElementById('r-chart').getContext('2d'), {
+    type:'bar',
+    data:{labels, datasets},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:_monthlySpend>0&&_metric==='revenue',labels:{boxWidth:14,font:{size:12}}},
+        tooltip:{callbacks:{label:ctx=>{
+          if(ctx.dataset.label==='Monthly spend') return 'Monthly spend: '+_currency+ctx.parsed.y.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+          return _metric==='revenue'?_currency+ctx.parsed.y.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):ctx.parsed.y+' orders';
+        }}},
+      },
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true,ticks:{callback:v=>_metric==='revenue'?_currency+v.toLocaleString():v}}},
+    },
+  });
+}
+
+function setMetric(m, btn) {
+  _metric = m;
+  btn.closest('.seg-group').querySelectorAll('.btn-seg').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderChart();
+}
+
+function setGran(g, btn) {
+  _gran = g;
+  btn.closest('.seg-group').querySelectorAll('.btn-seg').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderChart();
+}
+
+let _subGran = 'month', _subRevChart = null, _subTrendChart = null;
+
+function getSubBuckets() {
+  const key = _subGran==='day'?'subByDay':_subGran==='week'?'subByWeek':'subByMonth';
+  return (_data.subStats && _data.subStats[key]) || [];
+}
+
+function renderSubCharts() {
+  const buckets = getSubBuckets();
+  const labels  = buckets.map(b => b.date);
+  if (_subRevChart) _subRevChart.destroy();
+  _subRevChart = new Chart(document.getElementById('r-sub-rev-chart').getContext('2d'), {
+    type: 'bar',
+    data: { labels, datasets: [
+      { label:'First Sub Orders', data:buckets.map(b=>b.subRevenue),    backgroundColor:'rgba(88,86,214,0.85)',  borderColor:'#5856d6', borderWidth:1, stack:'rev' },
+      { label:'Recurring Orders', data:buckets.map(b=>b.recurRevenue),  backgroundColor:'rgba(52,199,89,0.85)',  borderColor:'#34c759', borderWidth:1, stack:'rev' },
+      { label:'Non-Subscription', data:buckets.map(b=>b.nonSubRevenue), backgroundColor:'rgba(0,113,227,0.75)', borderColor:'#0071e3', borderWidth:1, stack:'rev' },
+    ]},
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: {
+        legend:{ display:true, labels:{boxWidth:12,font:{size:11}} },
+        tooltip:{ callbacks:{ label:c=>c.dataset.label+': '+_currency+c.parsed.y.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) } },
+      },
+      scales:{
+        x:{ stacked:true, grid:{display:false} },
+        y:{ stacked:true, beginAtZero:true, ticks:{callback:v=>_currency+v.toLocaleString()} },
+      },
+    },
+  });
+  if (_subTrendChart) _subTrendChart.destroy();
+  _subTrendChart = new Chart(document.getElementById('r-sub-trend-chart').getContext('2d'), {
+    type: 'line',
+    data: { labels, datasets: [
+      { label:'New Subscribers',  data:buckets.map(b=>b.firstCount), borderColor:'#5856d6', backgroundColor:'rgba(88,86,214,0.1)', fill:true, tension:0.3, pointRadius:3, pointHoverRadius:5 },
+      { label:'Recurring Orders', data:buckets.map(b=>b.recurCount), borderColor:'#34c759', backgroundColor:'rgba(52,199,89,0.1)',  fill:true, tension:0.3, pointRadius:3, pointHoverRadius:5 },
+    ]},
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: {
+        legend:{ display:true, labels:{boxWidth:12,font:{size:11}} },
+        tooltip:{ callbacks:{ label:c=>c.dataset.label+': '+c.parsed.y } },
+      },
+      scales:{
+        x:{ grid:{display:false} },
+        y:{ beginAtZero:true, ticks:{precision:0} },
+      },
+    },
+  });
+}
+
+function setSubGran(g, btn) {
+  _subGran = g;
+  document.querySelectorAll('#r-sub-gran-group .btn-seg').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSubCharts();
+}
+
+renderChart();
+if (_data.hasSubscriptions) renderSubCharts();
+</script>
+</body>
+</html>
