@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Trends Report — 2026-07-21</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f5f7;color:#1d1d1f;padding:28px;}
+  .report-header{background:#fff;border-radius:12px;border:1px solid #d2d2d7;padding:20px 26px;margin-bottom:20px;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .report-header h1{font-size:20px;font-weight:700;}
+  .report-meta{font-size:12px;color:#6e6e73;}
+  .summary-bar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+  .stat{background:#fff;border:1px solid #d2d2d7;border-radius:10px;padding:11px 16px;min-width:110px;}
+  .stat-val{font-size:19px;font-weight:700;}
+  .stat-label{font-size:10px;color:#6e6e73;margin-top:2px;}
+  .chart-card{background:#fff;border-radius:12px;border:1px solid #d2d2d7;padding:20px 22px;margin-bottom:20px;}
+  .chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
+  .chart-header h2{font-size:15px;font-weight:600;}
+  .chart-controls{display:flex;gap:14px;flex-wrap:wrap;}
+  .seg-group{display:flex;gap:6px;}
+  .btn-seg{padding:5px 12px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;background:#fff;border:1px solid #d2d2d7;color:#1d1d1f;}
+  .btn-seg.active{background:#0071e3;color:#fff;border-color:#0071e3;}
+  .chart-wrap{position:relative;height:300px;}
+  .sub-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+  .sub-section-header h2{font-size:15px;font-weight:600;}
+  .sub-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+  .table-section{background:#fff;border-radius:12px;border:1px solid #d2d2d7;}
+  .table-title{font-size:15px;font-weight:600;padding:14px 18px 10px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:8px;}
+  .table-title span{font-size:12px;font-weight:400;color:#6e6e73;}
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  thead{display:table-header-group;}
+  th{padding:8px 12px;text-align:left;font-weight:600;background:#f5f5f7;border-bottom:1px solid #d2d2d7;white-space:nowrap;}
+  td{padding:7px 12px;border-bottom:1px solid #f0f0f0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:#fafafa;}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+    @page{margin:12mm 14mm;}
+    body{background:#fff!important;padding:0;}
+    .report-header{border:1px solid #d2d2d7;box-shadow:none;margin-bottom:12px;padding:12px 16px;}
+    .report-header h1{font-size:16px;}
+    .summary-bar{gap:6px;margin-bottom:12px;flex-wrap:nowrap;}
+    .stat{padding:7px 9px;min-width:0;flex:1;border-radius:7px;}
+    .stat-val{font-size:13px;}
+    .stat-label{font-size:8.5px;}
+    .stat > div[style]{font-size:9px!important;}
+    .chart-controls{display:none!important;}
+    .sub-section-header .seg-group{display:none!important;}
+    .sub-charts-grid{grid-template-columns:1fr 1fr;}
+    .chart-card{padding:12px 14px;margin-bottom:12px;page-break-inside:avoid;}
+    .chart-wrap{height:200px;}
+    .table-section{border:1px solid #d2d2d7;}
+    .table-title{padding:10px 12px 8px;font-size:13px;}
+    th{padding:6px 9px;font-size:10.5px;background:#f5f5f7!important;}
+    td{padding:5px 9px;font-size:10.5px;}
+    tr{page-break-inside:avoid;}
+    tr:nth-child(even) td{background:#fafafa!important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <h1>Order Trends Report</h1>
+  <div class="report-meta">Generated 7/21/2026, 5:23:24 PM</div>
+</div>
+
+<div class="summary-bar">
+    <div class="stat"><div class="stat-val">35</div><div class="stat-label">Matched orders</div></div>
+    <div class="stat"><div class="stat-val">25</div><div class="stat-label">Unique customers</div></div>
+    <div class="stat"><div class="stat-val">$4,506.48</div><div class="stat-label">Total revenue</div></div>
+    <div class="stat"><div class="stat-val">$180.26</div><div class="stat-label">Avg revenue / customer</div></div>
+    <div class="stat"><div class="stat-val">$128.76</div><div class="stat-label">Our AOV</div></div>
+    <div class="stat">
+      <div class="stat-val">$137.00</div>
+      <div class="stat-label">Client sitewide AOV</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" style="color:#ff3b30">-6.0%</div>
+      <div class="stat-label">AOV below sitewide</div>
+      <div style="font-size:11px;color:#6e6e73;margin-top:3px">$128.76 vs $137.00</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$14,000.00</div>
+      <div class="stat-label">Client spend</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" style="color:#ff3b30">0.32x</div>
+      <div class="stat-label">ROI</div>
+      <div style="font-size:11px;color:#6e6e73;margin-top:3px">per $1 spent</div>
+    </div></div>
+
+<div class="chart-card">
+  <div class="chart-header">
+    <h2 id="r-chart-title">Revenue Trend</h2>
+    <div class="chart-controls">
+      <div class="seg-group">
+        <button class="btn-seg active" onclick="setMetric('revenue',this)">Revenue</button>
+        <button class="btn-seg"        onclick="setMetric('orders',this)">Order Count</button>
+      </div>
+      <div class="seg-group">
+        <button class="btn-seg"        onclick="setGran('day',this)">Day</button>
+        <button class="btn-seg"        onclick="setGran('week',this)">Week</button>
+        <button class="btn-seg active" onclick="setGran('month',this)">Month</button>
+      </div>
+    </div>
+  </div>
+  <div class="chart-wrap"><canvas id="r-chart"></canvas></div>
+</div>
+
+
+<div style="margin-bottom:4px;">
+  <div class="sub-section-header">
+    <h2>Subscription Breakdown</h2>
+    <div class="seg-group" id="r-sub-gran-group">
+      <button class="btn-seg" onclick="setSubGran('day',this)">Day</button>
+      <button class="btn-seg" onclick="setSubGran('week',this)">Week</button>
+      <button class="btn-seg active" onclick="setSubGran('month',this)">Month</button>
+    </div>
+  </div>
+  <div class="summary-bar" style="margin-bottom:16px;">
+    <div class="stat"><div class="stat-val">28</div><div class="stat-label">Total sub orders</div></div>
+    <div class="stat"><div class="stat-val" style="color:#5856d6">18</div><div class="stat-label">New subscribers</div></div>
+    <div class="stat"><div class="stat-val" style="color:#34c759">10</div><div class="stat-label">Recurring orders</div></div>
+    <div class="stat"><div class="stat-val">$3,475.36</div><div class="stat-label">Sub revenue <span style="color:#5856d6;font-weight:600">77.12%</span></div></div>
+    <div class="stat"><div class="stat-val">$1,031.12</div><div class="stat-label">Non-sub revenue <span style="color:#0071e3;font-weight:600">22.9%</span></div></div>
+    <div class="stat"><div class="stat-val">18</div><div class="stat-label">Unique subscribers</div></div>
+    <div class="stat"><div class="stat-val">0.6</div><div class="stat-label">Avg recurring / sub</div></div>
+    <div class="stat"><div class="stat-val">$111.76</div><div class="stat-label">First order AOV</div></div>
+    <div class="stat"><div class="stat-val">$146.37</div><div class="stat-label">Recurring AOV</div></div>
+    <div class="stat"><div class="stat-val">$147.30</div><div class="stat-label">Non-sub AOV</div></div></div>
+  <div class="sub-charts-grid">
+    <div class="chart-card" style="margin-bottom:0">
+      <div class="chart-header"><h2>Revenue by Type</h2></div>
+      <div class="chart-wrap"><canvas id="r-sub-rev-chart"></canvas></div>
+    </div>
+    <div class="chart-card" style="margin-bottom:0">
+      <div class="chart-header"><h2>Subscriber Trends</h2></div>
+      <div class="chart-wrap"><canvas id="r-sub-trend-chart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="table-section">
+  <div class="table-title">Orders <span>35 total</span></div>
+  <table>
+    <thead><tr><th>Order #</th><th>Created At</th><th>Total</th><th>Payment</th><th>Fulfillment</th></tr></thead>
+    <tbody><tr><td>CA273200</td><td>2026-05-08 07:34:16 -0700</td><td>$123.52</td><td>partially_refunded</td><td>fulfilled</td></tr><tr><td>CA277037</td><td>2026-05-25 15:01:56 -0700</td><td>$110.02</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA277142</td><td>2026-05-25 20:50:37 -0700</td><td>$202.49</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA279033</td><td>2026-05-31 15:09:12 -0700</td><td>$90.97</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA280345</td><td>2026-06-07 01:07:29 -0700</td><td>$154.41</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA280396</td><td>2026-06-07 08:30:46 -0700</td><td>$135.83</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA280602</td><td>2026-06-08 07:04:07 -0700</td><td>$84.53</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA280626</td><td>2026-06-08 11:01:40 -0700</td><td>$126.82</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA280976</td><td>2026-06-10 05:51:48 -0700</td><td>$146.18</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA281047</td><td>2026-06-10 18:29:59 -0700</td><td>$85.43</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA281223</td><td>2026-06-11 18:52:13 -0700</td><td>$274.05</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA281761</td><td>2026-06-14 21:07:15 -0700</td><td>$120.75</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA282876</td><td>2026-06-19 19:25:42 -0700</td><td>$144.84</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA283076</td><td>2026-06-20 18:05:53 -0700</td><td>$194.00</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA283289</td><td>2026-06-21 19:32:00 -0700</td><td>$84.53</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA283575</td><td>2026-06-22 20:56:50 -0700</td><td>$84.53</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA283890</td><td>2026-06-24 01:07:55 -0700</td><td>$141.96</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA284889</td><td>2026-06-28 14:14:39 -0700</td><td>$84.53</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA285278</td><td>2026-06-29 14:53:56 -0700</td><td>$67.24</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA286336</td><td>2026-07-03 01:09:04 -0700</td><td>$90.51</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA286602</td><td>2026-07-04 18:03:15 -0700</td><td>$103.96</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA287017</td><td>2026-07-06 06:26:25 -0700</td><td>$77.97</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA287023</td><td>2026-07-06 06:49:10 -0700</td><td>$103.73</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA287321</td><td>2026-07-07 15:03:33 -0700</td><td>$96.60</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA287346</td><td>2026-07-07 21:06:00 -0700</td><td>$146.18</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA287704</td><td>2026-07-09 16:46:04 -0700</td><td>$76.07</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA287830</td><td>2026-07-10 01:07:53 -0700</td><td>$188.26</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA287861</td><td>2026-07-10 01:08:19 -0700</td><td>$109.84</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA287915</td><td>2026-07-10 11:31:08 -0700</td><td>$84.53</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA288311</td><td>2026-07-12 19:40:39 -0700</td><td>$139.99</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA288881</td><td>2026-07-15 01:10:11 -0700</td><td>$163.33</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA289189</td><td>2026-07-16 20:04:54 -0700</td><td>$129.54</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA289703</td><td>2026-07-19 01:08:07 -0700</td><td>$186.54</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA289881</td><td>2026-07-20 01:08:37 -0700</td><td>$244.12</td><td>paid</td><td>fulfilled</td></tr><tr><td>CA290118</td><td>2026-07-21 01:08:43 -0700</td><td>$108.68</td><td>paid</td><td>unfulfilled</td></tr></tbody>
+  </table>
+</div>
+
+
+
+<script>
+const _data = {"byDay":[{"date":"2026-05-08","total":123.52,"count":1},{"date":"2026-05-25","total":312.51,"count":2},{"date":"2026-05-31","total":90.97,"count":1},{"date":"2026-06-07","total":290.24,"count":2},{"date":"2026-06-08","total":211.35,"count":2},{"date":"2026-06-10","total":231.61,"count":2},{"date":"2026-06-11","total":274.05,"count":1},{"date":"2026-06-14","total":120.75,"count":1},{"date":"2026-06-19","total":144.84,"count":1},{"date":"2026-06-20","total":194,"count":1},{"date":"2026-06-21","total":84.53,"count":1},{"date":"2026-06-22","total":84.53,"count":1},{"date":"2026-06-24","total":141.96,"count":1},{"date":"2026-06-28","total":84.53,"count":1},{"date":"2026-06-29","total":67.24,"count":1},{"date":"2026-07-03","total":90.51,"count":1},{"date":"2026-07-04","total":103.96,"count":1},{"date":"2026-07-06","total":181.7,"count":2},{"date":"2026-07-07","total":242.78,"count":2},{"date":"2026-07-09","total":76.07,"count":1},{"date":"2026-07-10","total":382.63,"count":3},{"date":"2026-07-12","total":139.99,"count":1},{"date":"2026-07-15","total":163.33,"count":1},{"date":"2026-07-16","total":129.54,"count":1},{"date":"2026-07-19","total":186.54,"count":1},{"date":"2026-07-20","total":244.12,"count":1},{"date":"2026-07-21","total":108.68,"count":1}],"byWeek":[{"date":"2026-05-04","total":123.52,"count":1},{"date":"2026-05-25","total":403.48,"count":3},{"date":"2026-06-01","total":290.24,"count":2},{"date":"2026-06-08","total":837.76,"count":6},{"date":"2026-06-15","total":423.37,"count":3},{"date":"2026-06-22","total":311.02,"count":3},{"date":"2026-06-29","total":261.71,"count":3},{"date":"2026-07-06","total":1023.17,"count":9},{"date":"2026-07-13","total":479.41,"count":3},{"date":"2026-07-20","total":352.8,"count":2}],"byMonth":[{"date":"2026-05","total":527,"count":4},{"date":"2026-06","total":1929.63,"count":15},{"date":"2026-07","total":2049.85,"count":16}],"subStats":{"totalSubOrders":28,"newSubscribers":18,"recurringOrders":10,"nonSubOrders":7,"subRevenue":3475.36,"nonSubRevenue":1031.12,"subRevenuePercent":77.12,"uniqueSubscribers":18,"avgRecurPerSub":0.56,"firstAOV":111.76,"recurAOV":146.37,"nonSubAOV":147.3,"subByDay":[{"date":"2026-05-08","subRevenue":123.52,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-05-25","subRevenue":110.02,"recurRevenue":0,"nonSubRevenue":202.49,"firstCount":1,"recurCount":0,"nonSubCount":1},{"date":"2026-05-31","subRevenue":90.97,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-06-07","subRevenue":135.83,"recurRevenue":154.41,"nonSubRevenue":0,"firstCount":1,"recurCount":1,"nonSubCount":0},{"date":"2026-06-08","subRevenue":211.35,"recurRevenue":0,"nonSubRevenue":0,"firstCount":2,"recurCount":0,"nonSubCount":0},{"date":"2026-06-10","subRevenue":231.61,"recurRevenue":0,"nonSubRevenue":0,"firstCount":2,"recurCount":0,"nonSubCount":0},{"date":"2026-06-11","subRevenue":0,"recurRevenue":0,"nonSubRevenue":274.05,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-06-14","subRevenue":0,"recurRevenue":0,"nonSubRevenue":120.75,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-06-19","subRevenue":144.84,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-06-20","subRevenue":194,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-06-21","subRevenue":84.53,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-06-22","subRevenue":84.53,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-06-24","subRevenue":0,"recurRevenue":141.96,"nonSubRevenue":0,"firstCount":0,"recurCount":1,"nonSubCount":0},{"date":"2026-06-28","subRevenue":84.53,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-06-29","subRevenue":67.24,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-07-03","subRevenue":0,"recurRevenue":90.51,"nonSubRevenue":0,"firstCount":0,"recurCount":1,"nonSubCount":0},{"date":"2026-07-04","subRevenue":0,"recurRevenue":0,"nonSubRevenue":103.96,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-07-06","subRevenue":77.97,"recurRevenue":0,"nonSubRevenue":103.73,"firstCount":1,"recurCount":0,"nonSubCount":1},{"date":"2026-07-07","subRevenue":146.18,"recurRevenue":0,"nonSubRevenue":96.6,"firstCount":1,"recurCount":0,"nonSubCount":1},{"date":"2026-07-09","subRevenue":0,"recurRevenue":76.07,"nonSubRevenue":0,"firstCount":0,"recurCount":1,"nonSubCount":0},{"date":"2026-07-10","subRevenue":84.53,"recurRevenue":298.1,"nonSubRevenue":0,"firstCount":1,"recurCount":2,"nonSubCount":0},{"date":"2026-07-12","subRevenue":139.99,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-07-15","subRevenue":0,"recurRevenue":163.33,"nonSubRevenue":0,"firstCount":0,"recurCount":1,"nonSubCount":0},{"date":"2026-07-16","subRevenue":0,"recurRevenue":0,"nonSubRevenue":129.54,"firstCount":0,"recurCount":0,"nonSubCount":1},{"date":"2026-07-19","subRevenue":0,"recurRevenue":186.54,"nonSubRevenue":0,"firstCount":0,"recurCount":1,"nonSubCount":0},{"date":"2026-07-20","subRevenue":0,"recurRevenue":244.12,"nonSubRevenue":0,"firstCount":0,"recurCount":1,"nonSubCount":0},{"date":"2026-07-21","subRevenue":0,"recurRevenue":108.68,"nonSubRevenue":0,"firstCount":0,"recurCount":1,"nonSubCount":0}],"subByWeek":[{"date":"2026-05-04","subRevenue":123.52,"recurRevenue":0,"nonSubRevenue":0,"firstCount":1,"recurCount":0,"nonSubCount":0},{"date":"2026-05-25","subRevenue":200.99,"recurRevenue":0,"nonSubRevenue":202.49,"firstCount":2,"recurCount":0,"nonSubCount":1},{"date":"2026-06-01","subRevenue":135.83,"recurRevenue":154.41,"nonSubRevenue":0,"firstCount":1,"recurCount":1,"nonSubCount":0},{"date":"2026-06-08","subRevenue":442.96,"recurRevenue":0,"nonSubRevenue":394.8,"firstCount":4,"recurCount":0,"nonSubCount":2},{"date":"2026-06-15","subRevenue":423.37,"recurRevenue":0,"nonSubRevenue":0,"firstCount":3,"recurCount":0,"nonSubCount":0},{"date":"2026-06-22","subRevenue":169.06,"recurRevenue":141.96,"nonSubRevenue":0,"firstCount":2,"recurCount":1,"nonSubCount":0},{"date":"2026-06-29","subRevenue":67.24,"recurRevenue":90.51,"nonSubRevenue":103.96,"firstCount":1,"recurCount":1,"nonSubCount":1},{"date":"2026-07-06","subRevenue":448.67,"recurRevenue":374.17,"nonSubRevenue":200.33,"firstCount":4,"recurCount":3,"nonSubCount":2},{"date":"2026-07-13","subRevenue":0,"recurRevenue":349.87,"nonSubRevenue":129.54,"firstCount":0,"recurCount":2,"nonSubCount":1},{"date":"2026-07-20","subRevenue":0,"recurRevenue":352.8,"nonSubRevenue":0,"firstCount":0,"recurCount":2,"nonSubCount":0}],"subByMonth":[{"date":"2026-05","subRevenue":324.51,"recurRevenue":0,"nonSubRevenue":202.49,"firstCount":3,"recurCount":0,"nonSubCount":1},{"date":"2026-06","subRevenue":1238.46,"recurRevenue":296.37,"nonSubRevenue":394.8,"firstCount":11,"recurCount":2,"nonSubCount":2},{"date":"2026-07","subRevenue":448.67,"recurRevenue":1167.35,"nonSubRevenue":433.83,"firstCount":4,"recurCount":8,"nonSubCount":4}]},"hasSubscriptions":true};
+const _currency = "$";
+const _monthlySpend = 2819;
+let _metric = 'revenue', _gran = 'month', _chart = null;
+
+function getBuckets() {
+  return _gran==='day'?_data.byDay:_gran==='week'?_data.byWeek:_data.byMonth;
+}
+
+function renderChart() {
+  const buckets = getBuckets();
+  const labels  = buckets.map(b=>b.date);
+  const values  = buckets.map(b=>_metric==='revenue'?b.total:b.count);
+  document.getElementById('r-chart-title').textContent = _metric==='revenue'?'Revenue Trend':'Order Count Trend';
+  if (_chart) _chart.destroy();
+
+  const datasets = [{
+    type:'bar', label:_metric==='revenue'?'Revenue':'Order Count',
+    data:values, backgroundColor:'rgba(0,113,227,0.75)',
+    borderColor:'#0071e3', borderWidth:1, borderRadius:4, order:2,
+  }];
+  if (_monthlySpend > 0 && _metric==='revenue') {
+    datasets.push({
+      type:'line', label:'Monthly spend',
+      data:labels.map(()=>_monthlySpend),
+      borderColor:'#FFD60A', borderWidth:2.5, borderDash:[6,4],
+      pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#FFD60A',
+      fill:false, tension:0, order:1,
+    });
+  }
+
+  _chart = new Chart(document.getElementById('r-chart').getContext('2d'), {
+    type:'bar',
+    data:{labels, datasets},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:_monthlySpend>0&&_metric==='revenue',labels:{boxWidth:14,font:{size:12}}},
+        tooltip:{callbacks:{label:ctx=>{
+          if(ctx.dataset.label==='Monthly spend') return 'Monthly spend: '+_currency+ctx.parsed.y.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+          return _metric==='revenue'?_currency+ctx.parsed.y.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):ctx.parsed.y+' orders';
+        }}},
+      },
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true,ticks:{callback:v=>_metric==='revenue'?_currency+v.toLocaleString():v}}},
+    },
+  });
+}
+
+function setMetric(m, btn) {
+  _metric = m;
+  btn.closest('.seg-group').querySelectorAll('.btn-seg').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderChart();
+}
+
+function setGran(g, btn) {
+  _gran = g;
+  btn.closest('.seg-group').querySelectorAll('.btn-seg').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderChart();
+}
+
+let _subGran = 'month', _subRevChart = null, _subTrendChart = null;
+
+function getSubBuckets() {
+  const key = _subGran==='day'?'subByDay':_subGran==='week'?'subByWeek':'subByMonth';
+  return (_data.subStats && _data.subStats[key]) || [];
+}
+
+function renderSubCharts() {
+  const buckets = getSubBuckets();
+  const labels  = buckets.map(b => b.date);
+  if (_subRevChart) _subRevChart.destroy();
+  _subRevChart = new Chart(document.getElementById('r-sub-rev-chart').getContext('2d'), {
+    type: 'bar',
+    data: { labels, datasets: [
+      { label:'First Sub Orders', data:buckets.map(b=>b.subRevenue),    backgroundColor:'rgba(88,86,214,0.85)',  borderColor:'#5856d6', borderWidth:1, stack:'rev' },
+      { label:'Recurring Orders', data:buckets.map(b=>b.recurRevenue),  backgroundColor:'rgba(52,199,89,0.85)',  borderColor:'#34c759', borderWidth:1, stack:'rev' },
+      { label:'Non-Subscription', data:buckets.map(b=>b.nonSubRevenue), backgroundColor:'rgba(0,113,227,0.75)', borderColor:'#0071e3', borderWidth:1, stack:'rev' },
+    ]},
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: {
+        legend:{ display:true, labels:{boxWidth:12,font:{size:11}} },
+        tooltip:{ callbacks:{ label:c=>c.dataset.label+': '+_currency+c.parsed.y.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) } },
+      },
+      scales:{
+        x:{ stacked:true, grid:{display:false} },
+        y:{ stacked:true, beginAtZero:true, ticks:{callback:v=>_currency+v.toLocaleString()} },
+      },
+    },
+  });
+  if (_subTrendChart) _subTrendChart.destroy();
+  _subTrendChart = new Chart(document.getElementById('r-sub-trend-chart').getContext('2d'), {
+    type: 'line',
+    data: { labels, datasets: [
+      { label:'New Subscribers',  data:buckets.map(b=>b.firstCount), borderColor:'#5856d6', backgroundColor:'rgba(88,86,214,0.1)', fill:true, tension:0.3, pointRadius:3, pointHoverRadius:5 },
+      { label:'Recurring Orders', data:buckets.map(b=>b.recurCount), borderColor:'#34c759', backgroundColor:'rgba(52,199,89,0.1)',  fill:true, tension:0.3, pointRadius:3, pointHoverRadius:5 },
+    ]},
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: {
+        legend:{ display:true, labels:{boxWidth:12,font:{size:11}} },
+        tooltip:{ callbacks:{ label:c=>c.dataset.label+': '+c.parsed.y } },
+      },
+      scales:{
+        x:{ grid:{display:false} },
+        y:{ beginAtZero:true, ticks:{precision:0} },
+      },
+    },
+  });
+}
+
+function setSubGran(g, btn) {
+  _subGran = g;
+  document.querySelectorAll('#r-sub-gran-group .btn-seg').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSubCharts();
+}
+
+renderChart();
+if (_data.hasSubscriptions) renderSubCharts();
+</script>
+</body>
+</html>
